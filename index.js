@@ -34,6 +34,10 @@ function startServer() {
                 app.locals.clients[phoneNumber] = client;
                 app.locals.client_ready[phoneNumber] = false;
 
+                client.on('message', async (msg) => {
+                    console.log(`Received message from ${msg.from}: ${msg.body}`);
+                });
+
                 client.initialize();
 
                 return client;
